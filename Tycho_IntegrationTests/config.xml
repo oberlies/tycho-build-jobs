@@ -4,7 +4,7 @@
   <description>&lt;a href=&quot;ws/tycho-its/target/surefire-reports/&quot;&gt;Test Results&lt;/a&gt;</description>
   <logRotator>
     <daysToKeep>-1</daysToKeep>
-    <numToKeep>30</numToKeep>
+    <numToKeep>28</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
@@ -115,12 +115,11 @@
     </maven-builder>
   </builders>
   <publishers>
-    <hudson.tasks.ArtifactArchiver>
-      <artifacts>tycho-its/target/surefire-reports/</artifacts>
-      <compressionType>GZIP</compressionType>
-      <latestOnly>false</latestOnly>
-      <autoValidateFileMask>false</autoValidateFileMask>
-    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>tycho-its/target/surefire-reports/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
   </publishers>
   <buildWrappers/>
 </project>
