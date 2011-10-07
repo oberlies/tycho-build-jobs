@@ -92,29 +92,6 @@
         <goals>clean install</goals>
         <privateRepository>false</privateRepository>
         <privateTmpdir>false</privateTmpdir>
-        <pomFile>tycho-p2-resolver\pom.xml</pomFile>
-        <properties>
-          <entries/>
-        </properties>
-        <errors>true</errors>
-        <verbosity>NORMAL</verbosity>
-        <offline>false</offline>
-        <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
-        <recursive>true</recursive>
-        <checksumMode>NORMAL</checksumMode>
-        <failMode>NORMAL</failMode>
-        <makeMode>NONE</makeMode>
-        <settingsId>NONE</settingsId>
-        <globalSettingsId>NONE</globalSettingsId>
-        <toolChainsId>NONE</toolChainsId>
-      </config>
-    </maven-builder>
-    <maven-builder>
-      <config>
-        <installationId>Maven 3.x</installationId>
-        <goals>clean install</goals>
-        <privateRepository>false</privateRepository>
-        <privateTmpdir>false</privateTmpdir>
         <pomFile>pom.xml</pomFile>
         <properties>
           <entries/>
