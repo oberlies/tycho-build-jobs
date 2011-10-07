@@ -1,0 +1,55 @@
+Hudson job configuration for local builds of Tycho
+
+
+I. Introduction
+
+The Hudson build jobs in this git repository can be used to build Tycho 
+locally. They fetch the Tycho sources from your local copy of the Tycho git 
+repository. With this setup, you can run the Tycho integration tests on local 
+changes, while continuing to work in your local copy of the Tycho sources. This 
+is in particular useful for the output qualification of patches.
+
+
+II. Prerequisites
+
+A Hudson 2.1.0 (or later) installation with the following plug-ins
+- Hudson Git Plugin 2.1.0 or later
+- Hudson Parameterized Trigger Plugin 2.4 or later
+
+A local copy of the Tycho git repository (see [1]).
+
+
+III. Setup
+
+1. Clone this git repository into the jobs/ directory of your HUDSON_HOME 
+   directory. Alternatively, you can clone the repository to any other 
+   location and create symbolic link to each of the job folders. (Make sure to 
+   give the links the same name as the link targets.) Restart your Hudson - the 
+   jobs should now show up.
+
+2. In the Hudson configuration UI, define the following environment variables:
+     TYCHO_TEST_TARGET_PLATFORM  as the path to a directory containing an 
+       Eclipse SDK 3.7.0 plus delta pack
+     TYCHO_TEST_SETTINGS  as the path to the settings.xml to be used for the 
+       integration tests. If unsure, use your normal settings.xml.
+
+3. In each of the job folders, create a symbolic link called "source-link" 
+   pointing to your local copy of the Tycho git repository. (Windows user 
+   need to use mklink [2] from a command prompt with administrator 
+   permissions.)
+
+4. Run the job Tycho_Build.
+
+
+IV. Troubleshooting
+
+- "ERROR: Error cloning remote repo 'origin' : Could not clone ../source-link/"
+  On my Windows machine, git clone seems to fail in combination with the 
+  linked directory. The following workaround worked for me: Open a Cygwin 
+  shell, change to the job workspace directory (e.g. Tycho_Build/workspace/), 
+  and run git fetch. After this, the Hudson Git Plugin should work as expected.
+
+
+
+[1] http://wiki.eclipse.org/Developing_Tycho
+[2] http://en.wikipedia.org/wiki/NTFS_symbolic_link

@@ -34,10 +34,8 @@
         <name>origin</name>
         <uris>
           <org.eclipse.jgit.transport.URIish>
-            <scheme>file</scheme>
-            <path>/cygdrive/c/Env/Source/sonatype-tycho/</path>
+            <path>../source-link/</path>
             <port>-1</port>
-            <host>localhost</host>
           </org.eclipse.jgit.transport.URIish>
         </uris>
         <pushURIs/>
