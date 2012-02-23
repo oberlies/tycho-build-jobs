@@ -20,12 +20,11 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TEST_SELECTION</name>
-          <description>Command line parameter for selecting individual test: &lt;tt&gt;-Dtest=&amp;lt;TestClassName&amp;gt;</description>
+          <description>Integration test class name, or empty for all tests.</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <watched-dependencies-property/>
   </properties>
   <scm class="hudson.plugins.git.GitSCM">
     <configVersion>1</configVersion>
@@ -53,6 +52,7 @@
         <tagopt>AUTO_FOLLOW</tagopt>
         <mirror>false</mirror>
         <timeout>0</timeout>
+        <relativeTargetDir></relativeTargetDir>
       </RemoteConfig>
     </remoteRepositories>
     <branches>
@@ -70,9 +70,10 @@
     <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
     <skipTag>false</skipTag>
   </scm>
   <advancedAffinityChooser>false</advancedAffinityChooser>
@@ -95,17 +96,20 @@
           <entries>
             <entry name="tycho.testSettings" value="${TYCHO_TEST_SETTINGS}"/>
             <entry name="tycho.testTargetPlatform" value="${TYCHO_TEST_TARGET_PLATFORM}"/>
+            <entry name="test" value="${TEST_SELECTION}"/>
           </entries>
         </properties>
         <errors>true</errors>
         <verbosity>NORMAL</verbosity>
         <offline>false</offline>
         <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
+        <profiles>
+          <string>parallel</string>
+        </profiles>
         <recursive>true</recursive>
         <checksumMode>NORMAL</checksumMode>
         <failMode>NORMAL</failMode>
         <makeMode>NONE</makeMode>
-        <mavenOpts>${TEST_SELECTION}</mavenOpts>
         <settingsId>NONE</settingsId>
         <globalSettingsId>NONE</globalSettingsId>
         <toolChainsId>NONE</toolChainsId>
